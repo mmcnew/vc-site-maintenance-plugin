@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
   Before the plugin does anything, we check for updates.
 */
 
-require_once( 'inc/vc-plugin-updater.php' );
+require_once( '/inc/vc-plugin-updater.php' );
 if ( is_admin() ) {
     new VC_Plugin_Updater( __FILE__, 'mmcnew', "vc-site-maintenance-plugin" );
 }
