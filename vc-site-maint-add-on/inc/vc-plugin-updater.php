@@ -1,3 +1,11 @@
+<?php
+
+/*
+*    Update Plugin
+*    @package VC Site Maintenance Plugin
+*    Since version 1.04
+*/
+
 class VC_Plugin_Updater {
  
     private $slug; // plugin slug
@@ -174,3 +182,4 @@ class VC_Plugin_Updater {
         return $result;
     }
 }
+?>
