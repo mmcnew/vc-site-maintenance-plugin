@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.0476
+  Version: 1.048
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -92,6 +92,58 @@ function add_roles_on_plugin_activation() {
 			'delete_product_terms' => true,
 			'assign_product_terms' => true,
 			'manage_categories' => true,
+			'edit_others_product' => true,
+			'read_others_product' => true,
+			'delete_others_product' => true,
+			'assign shop coupon terms' => true,
+			'assign shop order terms' => true,
+			'assign shop webhook terms' => true,
+			'delete others shop coupons' => true,
+			'delete others shop orders' => true,
+			'delete others shop webhooks' => true,
+			'delete private shop coupons' => true,
+			'delete private shop orders' => true,
+			'delete private shop webhooks' => true,
+			'delete published shop coupons' => true,
+			'delete published shop orders' => true,
+			'delete published shop webhooks' => true,
+			'delete shop coupon' => true,
+			'delete shop coupon terms' => true,
+			'delete shop coupons' => true,
+			'delete shop order' => true,
+			'delete shop order terms' => true,
+			'delete shop orders' => true,
+			'delete shop webhook' => true,
+			'delete shop webhook terms' => true,
+			'delete shop webhooks' => true,
+			'edit others shop coupons' => true,
+			'edit others shop orders' => true,
+			'edit others shop webhooks' => true,
+			'edit private shop coupons' => true,
+			'edit private shop orders' => true,
+			'edit private shop webhooks' => true,
+			'edit published shop coupons' => true,
+			'edit published shop orders' => true,
+			'edit published shop webhooks' => true,
+			'edit shop coupon' => true,
+			'edit shop coupon terms' => true,
+			'edit shop coupons' => true,
+			'edit shop order' => true,
+			'edit shop order terms' => true,
+			'edit shop orders' => true,
+			'edit shop webhook' => true,
+			'edit shop webhook terms' => true,
+			'edit shop webhooks' => true,
+			'manage capabilities' => true,
+			'manage shop coupon terms' => true,
+			'manage shop order terms' => true,
+			'manage shop webhook terms' => true,
+			'read private shop coupons' => true,
+			'read private shop orders' => true,
+			'read private shop webhooks' => true,
+			'read shop coupon' => true,
+			'read shop order' => true,
+			'read shop webhook' => true,
 
 			//CoursePress Specific Permissions
 			
@@ -172,7 +224,7 @@ register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
   Upon update, we want to make sure the activation hook fires again, as it doesn't fire on update. We need to make sure that any changes to the user role capabilities are registered.
  */
  
-//do_action( 'upgrader_process_complete', $this, $options['add_roles_on_plugin_activation'] );
+do_action( 'upgrader_process_complete', $this, $options['add_roles_on_plugin_activation'] );
 
 /*
   Should the plugin become deactivatede, we want to remove the custom user role and convert anyone with this role to an administrator role.
