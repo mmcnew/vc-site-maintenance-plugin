@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.047
+  Version: 1.0471
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -172,7 +172,7 @@ register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
   Upon update, we want to make sure the activation hook fires again, as it doesn't fire on update. We need to make sure that any changes to the user role capabilities are registered.
  */
  
-do_action( 'upgrader_process_complete', Plugin_Upgrader, 'add_roles_on_plugin_activation' );
+do_action( 'upgrader_process_complete', $this, $options['add_roles_on_plugin_activation'] );
 
 /*
   Should the plugin become deactivatede, we want to remove the custom user role and convert anyone with this role to an administrator role.
