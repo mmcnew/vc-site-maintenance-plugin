@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.0473
+  Version: 1.0474
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -193,8 +193,8 @@ register_deactivation_hook( __FILE__, 'remove_custom_user' );
 function check_user_role( $role, $user_id = null ) {
 	if ( is_numeric( $user_id ) )
 	$user = get_userdata( $user_id );
-	else
-	$user = wp_get_current_user();
+	//else
+	//$user = wp_get_current_user();
 	if ( empty( $user ) )
 	return false;
 	return in_array( $role, (array) $user->roles );
