@@ -58,6 +58,15 @@ function add_roles_on_plugin_activation() {
 			'create_users' => true,
 			'delete_users' => true,
 			'unfiltered_html' => true,
+			'delete_others_pages' => true,
+			'delete_pages' => true,
+			'delete_private_pages' => true,
+			'delete_published_pages' => true,
+			'edit_others_pages' => true,
+			'edit_pages' => true,
+			'edit_private_pages' => true,
+			'edit_published_pages' => true,
+			'read_private_pages' => true,
 			
 			//WooCommerce Permissions
 			
