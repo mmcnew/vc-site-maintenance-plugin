@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.05.04.04
+  Version: 1.05.04.05
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -338,7 +338,7 @@ function vc_link_style() {
 
 function return_admin_permissions_error () {
 	
-	if ( check_user_roll('administrator') ) {
+	if ( check_user_role('administrator') ) {
 		
 		if ( function_exists('add_menu_page') ) {
 			
