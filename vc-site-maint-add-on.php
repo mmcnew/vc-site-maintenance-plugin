@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.05.04.03
+  Version: 1.05.04.04
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -333,8 +333,38 @@ function vc_link_style() {
 	}
 	
 }
+
+/* In case any permissions get removed from the admin with the "remove_admin_page" function, we want to return them. */
+
+function return_admin_permissions_error () {
 	
+	if ( check_user_roll('administrator') ) {
+		
+		if ( function_exists('add_menu_page') ) {
+			
+			/* Add back in any removed menu pages */
+			
+			add_menu_page('themes.php'); // Appearance
+			add_menu_page('plugins.php'); // Plugins
+			add_menu_page('tools.php'); // Tools
+			add_menu_page('options-general.php'); // Settings
+			add_menu_page('_options'); // Theme Options
+			
+		}
+		
+		else {
+			
+			return NULL;
+			
+		}
+		
+	}
 	
+}
+
+/* Initialize the function at the proper time. */
+
+add_action('admin_menu', 'return_admin_permissions_error');
 
 /*
   Should the plugin become deactivatede, we want to remove the custom user role and convert anyone with this role to an administrator role.
@@ -344,17 +374,6 @@ function vc_link_style() {
 
 function remove_custom_user() {
 	remove_role( 'site_owner' );
-	if ( function_exists('add_menu_page') ) {
-		
-		/* Add back in any removed menu pages */
-		
-		add_menu_page('themes.php'); // Appearance
-		add_menu_page('plugins.php'); // Plugins
-		add_menu_page('tools.php'); // Tools
-		add_menu_page('options-general.php'); // Settings
-		add_menu_page('_options'); // Theme Options
-		
-	}
 }
 
 
