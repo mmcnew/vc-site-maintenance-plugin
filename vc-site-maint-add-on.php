@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.05.04.01
+  Version: 1.05.04.02
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -227,20 +227,6 @@ register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
  
 add_action( 'admin_init', 'add_roles_on_plugin_activation' );
 
-/*
-  Should the plugin become deactivatede, we want to remove the custom user role and convert anyone with this role to an administrator role.
-*/
-  
-// Function to remove the user role.
-
-function remove_custom_user() {
-	remove_role( 'site_owner' );
-}
-
-// Call the cunction on plugin Deactivation
-   
-register_deactivation_hook( __FILE__, 'remove_custom_user' );
-
 // Check User Role Level
 
 function check_user_role( $role, $user_id = null ) {
@@ -272,21 +258,13 @@ function remove_admin_menus () {
 	
 		if ( function_exists('remove_menu_page') ) {
 		
-			/* Remove unwanted menu items by passing their slug to the remove_menu_item() function.
-    		You can comment out the items you want to keep. */
-	
-			// remove_menu_page('index.php'); // Dashboard tab
-			// remove_menu_page('edit.php'); // Posts
-			// remove_menu_page('edit.php?post_type=page'); // Pages
-			// remove_menu_page('upload.php'); // Media
-			// remove_menu_page('link-manager.php'); // Links
-			// remove_menu_page('edit-comments.php'); // Comments
-			//remove_menu_page('themes.php'); // Appearance
-			//remove_menu_page('plugins.php'); // Plugins
-			// remove_menu_page('users.php'); // Users
-			//remove_menu_page('tools.php'); // Tools
-			//remove_menu_page('options-general.php'); // Settings
-			//remove_menu_page('_options'); // Theme Options
+			/* Remove unwanted menu items by passing their slug to the remove_menu_item() function. */
+			
+			remove_menu_page('themes.php'); // Appearance
+			remove_menu_page('plugins.php'); // Plugins
+			remove_menu_page('tools.php'); // Tools
+			remove_menu_page('options-general.php'); // Settings
+			remove_menu_page('_options'); // Theme Options
 		}
 	}
 }
@@ -353,5 +331,32 @@ function vc_link_style() {
 			}
 		</style>';
 	}
+	
+	
+
+/*
+  Should the plugin become deactivatede, we want to remove the custom user role and convert anyone with this role to an administrator role.
+*/
+  
+// Function to remove the user role.
+
+function remove_custom_user() {
+	remove_role( 'site_owner' );
+	if ( function_exists('add_menu_page') ) {
+		
+		/* Add back in any removed menu pages */
+		
+		add_menu_page('themes.php'); // Appearance
+		add_menu_page('plugins.php'); // Plugins
+		add_menu_page('tools.php'); // Tools
+		add_menu_page('options-general.php'); // Settings
+		add_menu_page('_options'); // Theme Options
+		
+	}
 }
 
+
+
+// Call the cunction on plugin Deactivation
+   
+register_deactivation_hook( __FILE__, 'remove_custom_user' );
