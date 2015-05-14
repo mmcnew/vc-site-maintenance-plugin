@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.06
+  Version: 1.06.01
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -260,6 +260,17 @@ function remove_admin_menus () {
 			remove_menu_page('options-general.php'); // Settings
 			remove_menu_page('_options'); // Theme Options
 		}
+	}
+}
+
+// Add our function to the admin_menu action
+add_action('admin_menu', 'remove_admin_menus');
+
+// Akin to our last function, we need to remove the menus that non-admins should not have access to in the admin menu
+
+function remove_admin_bar_menus() {
+	
+	if ( ! check_user_role('administrator') ) {
 		
 		// Check to make sure the built-in WordPress function remove_node() exists in the current installation
 		
@@ -270,11 +281,14 @@ function remove_admin_menus () {
 			$wp_admin_bar->remove_node('_options'); // Theme Panel Menu
 			
 		}
+		
 	}
+	
 }
 
-// Add our function to the admin_menu action
-add_action('admin_menu', 'remove_admin_menus');
+// Now hook the function tot he admin bar
+
+add_action('admin_bar_menu','remove_admin_bar_menus', 999 );
 
 /*
   Now we want the plugin to replace the welcome message, becaues "Howdy" is stupid.
