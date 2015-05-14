@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.06.03
+  Version: 1.06.04
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -272,17 +272,11 @@ function remove_admin_bar_menus( $wp_admin_bar ) {
 	
 	if ( ! check_user_role('administrator') ) {
 		
-		// Check to make sure the built-in WordPress function remove_node() exists in the current installation
-		
-		if ( function_exists('remove_node') ) {
+		/* Remove admin bar menus that non-admins should not have access to. */
 			
-			/* Remove admin bar menus that non-admins should not have access to. */
+		$wp_admin_bar->get_node('_options');
 			
-			$wp_admin_bar->get_node('_options');
-			
-			$wp_admin_bar->remove_node('_options'); // Theme Panel Menu
-			
-		}
+		$wp_admin_bar->remove_node('_options'); // Theme Panel Menu
 		
 	}
 	
