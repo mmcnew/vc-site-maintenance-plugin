@@ -4,7 +4,7 @@
   Plugin Name: VC Site Maintenance Add-On
   Plugin URI: http://www.visceralconcepts.com
   Description: Generates all of the necessary functions for the Site Maintenance contract.
-  Version: 1.06.04
+  Version: 1.07
   Author: Visceral Concepts
   Author URI: http://www.visceralconcepts.com
   License: GPLv3 or Later
@@ -213,6 +213,37 @@ function add_roles_on_plugin_activation() {
 			'manage_options' => true,
 			
 			//MarketPress Specific Permissions
+			
+			//BBPress Specific Permissions
+			
+			'publish_forums' => true,
+			'edit_forums' => true,
+			'edit_others_forums' => true,
+			'delete_forums' => true,
+			'delete_others_forums' => true,
+			'read_private_forums' => true,
+			'read_hidden_forums' => true,
+			'publish_topics' => true,
+			'edit_topics' => true,
+			'edit_others_topics' => true,
+			'delete_topics' => true,
+			'delete_others_topics' => true,
+			'read_private_topics' => true,
+			'publish_replies' => true,
+			'edit_replies' => true,
+			'edit_others_replies' => true,
+			'delete_replies' => true,
+			'delete_others_replies' => true,
+			'read_private_replies' => true,
+			'manage_topic_tags' => true,
+			'edit_topic_tags' => true,
+			'delete_topic_tags' => true,
+			'assign_topic_tags' => true,
+			'spectate' => true,
+			'participate' => true,
+			'moderate' => true,
+			'throttle' => true,
+			'view_trash' => true,
 		)
 	);
 }
